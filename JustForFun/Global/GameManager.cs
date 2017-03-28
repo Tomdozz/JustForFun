@@ -1,4 +1,5 @@
 ﻿using JustForFun.FlockingFolder.BoidsFlocking;
+using JustForFun.Menu.StarFlight;
 using JustForFun.Steering;
 using JustForFun.TileFolder.MapFolder;
 using Microsoft.Xna.Framework;
@@ -35,12 +36,15 @@ namespace JustForFun.Global
         Enemy leader;
         SteeringController sController;
 
+        StarController starcontroller;
+
         TypeOfBehavior m_CurrentBehavior;
         GameState m_CurrentGameState;
 
         public GameManager()
         {
             map = new Map();
+            starcontroller = new StarController();
             boidController = new BoidController(TextureMananger.tri);
             enemy = new Enemy(300f, 300f);
             leader = new Enemy(600f, 500f);
@@ -91,6 +95,7 @@ namespace JustForFun.Global
             switch (m_CurrentGameState)
             {
                 case GameState.Menu:
+                    starcontroller.Update();
                     break;
                 case GameState.Running:
                     break;
@@ -104,11 +109,11 @@ namespace JustForFun.Global
                     break;
             }
             //leader.Wander2(KeyMouseReader1.GetMousePosition(), gameTime);
-            leader.Approach(KeyMouseReader1.GetMousePosition());
+            //leader.Approach(KeyMouseReader1.GetMousePosition());
             //enemy.Approach(KeyMouseReader1.GetMousePosition());
             //enemy.Wander2(KeyMouseReader1.GetMousePosition(),gameTime);
             //sController.Update(gameTime);
-            enemy.Pursuit(leader);
+            //enemy.Pursuit(leader);
             //boidController.Update();
             //map.UpdateMap();
         }
@@ -120,11 +125,27 @@ namespace JustForFun.Global
         public void Draw(SpriteBatch sb)
         {
             sb.Begin();
+            switch (m_CurrentGameState)
+            {
+                case GameState.Menu:
+                    starcontroller.Draw(sb);
+                    break;
+                case GameState.Running:
+                    break;
+                case GameState.Reset:
+                    break;
+                case GameState.Exit:
+                    break;
+                case GameState.Credits:
+                    break;
+                default:
+                    break;
+            }
+            //enemy.Draw(sb);
             //map.Draw(sb);
             //sController.Draw(sb);
-           sb.Draw(TextureMananger.tri, KeyMouseReader1.GetMousePosition(), Color.White);
-           enemy.Draw(sb);
-          //  boidController.Draw(sb);
+            //sb.Draw(TextureMananger.tri, KeyMouseReader1.GetMousePosition(), Color.White);
+            // boidController.Draw(sb);
             sb.End();
         }
     }

@@ -17,10 +17,20 @@ namespace JustForFun.Global
 
         public static int ImResolution = 10;
 
-        //public static int windowWidth = 100;
-        //public static int windowHeight = 100;
-
         public static int maxX = 150;
         public static int maxY = 150;
+
+        Random rnd;
+
+        /// <summary>
+        /// Random value, will return a float
+        /// </summary>
+        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
+        /// <returns></returns>
+        public float GetRandomNumber(float minimum, float maximum)
+        {
+            return (float)(rnd.NextDouble() * (maximum - minimum) + minimum);
+        }
     }
 }
