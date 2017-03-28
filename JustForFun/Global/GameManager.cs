@@ -12,6 +12,21 @@ using System.Threading.Tasks;
 
 namespace JustForFun.Global
 {
+    public enum TypeOfBehavior
+    {
+        Flocking,
+        Steering,
+        CelluarAutomata,
+    }
+    public enum GameState
+    {
+        Menu,
+        Running,
+        Reset,
+        Exit,
+        Credits,
+    }
+
     class GameManager
     {
         Map map;
@@ -19,6 +34,9 @@ namespace JustForFun.Global
         Enemy enemy;
         Enemy leader;
         SteeringController sController;
+
+        TypeOfBehavior m_CurrentBehavior;
+        GameState m_CurrentGameState;
 
         public GameManager()
         {
@@ -47,12 +65,44 @@ namespace JustForFun.Global
 
         }
 
+        void CheckBehavior()
+        {
+
+            m_CurrentBehavior = TypeOfBehavior.Flocking;
+            switch (m_CurrentBehavior)
+            {
+                case TypeOfBehavior.Flocking:
+                    break;
+                case TypeOfBehavior.Steering:
+                    break;
+                case TypeOfBehavior.CelluarAutomata:
+                    break;
+                default:
+                    break;
+            }
+        }
         /// <summary>
         /// Updates the game
         /// </summary>
         /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
+            m_CurrentGameState = GameState.Menu;
+            switch (m_CurrentGameState)
+            {
+                case GameState.Menu:
+                    break;
+                case GameState.Running:
+                    break;
+                case GameState.Reset:
+                    break;
+                case GameState.Exit:
+                    break;
+                case GameState.Credits:
+                    break;
+                default:
+                    break;
+            }
             //leader.Wander2(KeyMouseReader1.GetMousePosition(), gameTime);
             leader.Approach(KeyMouseReader1.GetMousePosition());
             //enemy.Approach(KeyMouseReader1.GetMousePosition());
