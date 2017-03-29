@@ -125,6 +125,7 @@ namespace JustForFun.Global
         public void Draw(SpriteBatch sb)
         {
             sb.Begin();
+
             switch (m_CurrentGameState)
             {
                 case GameState.Menu:
@@ -141,10 +142,10 @@ namespace JustForFun.Global
                 default:
                     break;
             }
+            //sb.Draw(TextureMananger.star, KeyMouseReader1.GetMousePosition(), Color.Red);
             //enemy.Draw(sb);
             //map.Draw(sb);
             //sController.Draw(sb);
-            //sb.Draw(TextureMananger.tri, KeyMouseReader1.GetMousePosition(), Color.White);
             // boidController.Draw(sb);
             sb.End();
         }

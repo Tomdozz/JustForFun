@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace JustForFun.Global
         public static int windowHeight = 920;
         public static int windowWidth = 980;
 
+        public static Rectangle spawnBox()
+        {
+           return new Rectangle(windowHeight / 4, windowWidth / 4, 100, 100);
+        }
+
+        public static int spawnBoxX;
+        public static int spawnBoxY;
         public static int ImResolution = 10;
 
         public static int maxX = 150;
