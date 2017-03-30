@@ -16,6 +16,7 @@ namespace JustForFun.Menu.StarFlight
         float m_Z;
 
         float m_dir;
+        float m_Speed = 2;
 
         float m_Scale = 0.005f;
 
@@ -60,8 +61,8 @@ namespace JustForFun.Menu.StarFlight
                 //-((float)d/1000000000);
 
             m_Desired.Normalize();
-            m_Desired = Vector2.Multiply(m_Desired, 0.2f);
-            m_Velocity = Vector2.Multiply(m_Desired, 0.2f);
+            m_Desired = Vector2.Multiply(m_Desired, m_Speed);
+            m_Velocity = Vector2.Multiply(m_Desired, -m_Speed);
 
             Vector2 m_Steer = Vector2.Subtract(m_Desired, m_Velocity);
 
