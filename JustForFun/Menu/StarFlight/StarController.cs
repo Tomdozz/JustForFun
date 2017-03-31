@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace JustForFun.Menu.StarFlight
 {
     class StarController
     {
-        Star[] stars = new Star[500];
+        Star[] stars = new Star[1000];
 
         Random rnd;
         public StarController()
@@ -21,11 +22,15 @@ namespace JustForFun.Menu.StarFlight
             }
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (Star star in stars)
             {
-                star.Update();
+                if(star.m_Checkvalue < 5)
+                {
+                    star.Reset(gameTime, ref rnd);
+                }
+                star.Update(gameTime);
             }
         }
 

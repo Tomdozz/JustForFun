@@ -13,8 +13,8 @@ namespace JustForFun.Global
         //public static int windowHeight = 720;
         //public static int windowWidth = 1280;
 
-        public static int windowHeight = 920;
-        public static int windowWidth = 980;
+        public static int windowHeight = 820;
+        public static int windowWidth = 880;
 
         public static Rectangle spawnBox()
         {

@@ -95,7 +95,7 @@ namespace JustForFun.Global
             switch (m_CurrentGameState)
             {
                 case GameState.Menu:
-                    starcontroller.Update();
+                    starcontroller.Update(gameTime);
                     break;
                 case GameState.Running:
                     break;
@@ -142,7 +142,7 @@ namespace JustForFun.Global
                 default:
                     break;
             }
-            //sb.Draw(TextureMananger.star, KeyMouseReader1.GetMousePosition(), Color.Red);
+         //   sb.Draw(TextureMananger.star, KeyMouseReader1.GetMousePosition(), null, Color.Red, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
             //enemy.Draw(sb);
             //map.Draw(sb);
             //sController.Draw(sb);

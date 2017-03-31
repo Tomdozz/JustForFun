@@ -20,7 +20,7 @@ namespace JustForFun.Global
             cell = Content.Load<Texture2D>("pixel");
             grid = Content.Load<Texture2D>("grid");
             tri = Content.Load<Texture2D>("tri");
-            star = Content.Load<Texture2D>("circle");
+            star = Content.Load<Texture2D>("star1");
         }
     }
 }
