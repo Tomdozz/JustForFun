@@ -42,23 +42,13 @@ namespace JustForFun.Menu.StarFlight
 
             m_Startdelay = rnd.Next(0, 50);
             //m_Speed = rnd.Next(0, 2);
+
             m_dir = rnd.Next(0, 4);
-            if (m_dir == 0)
-            {
-                m_Goal = new Vector2(rnd.Next(Fixed.windowWidth - 30, Fixed.windowWidth), rnd.Next(0, Fixed.windowHeight));
-            }
-            if (m_dir == 1)
-            {
-                m_Goal = new Vector2(rnd.Next(0, 30), rnd.Next(0, Fixed.windowHeight));
-            }
-            if (m_dir == 2)
-            {
-                m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(Fixed.windowHeight - 30, Fixed.windowHeight));
-            }
-            if (m_dir == 3)
-            {
-                m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(0, 30));
-            }
+            if (m_dir == 0) { m_Goal = new Vector2(rnd.Next(Fixed.windowWidth, Fixed.windowWidth + 30), rnd.Next(0, Fixed.windowHeight)); }
+            if (m_dir == 1) { m_Goal = new Vector2(rnd.Next(-30, 0), rnd.Next(0, Fixed.windowHeight)); }
+            if (m_dir == 2) { m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(Fixed.windowHeight, Fixed.windowHeight + 30)); }
+            if (m_dir == 3) { m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(-30, 0)); }
+
             m_Position = new Vector2(m_X, m_Y);
             m_Startposition = new Vector2(m_X, m_Y);
             random = new Random();
@@ -67,10 +57,10 @@ namespace JustForFun.Menu.StarFlight
         public void Reset(GameTime gameTime, ref Random rnd)
         {
             m_dir = rnd.Next(0, 4);
-            if (m_dir == 0){m_Goal = new Vector2(rnd.Next(Fixed.windowWidth - 30, Fixed.windowWidth), rnd.Next(0, Fixed.windowHeight));}
-            if (m_dir == 1){m_Goal = new Vector2(rnd.Next(0, 30), rnd.Next(0, Fixed.windowHeight));}
-            if (m_dir == 2){m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(Fixed.windowHeight - 30, Fixed.windowHeight));}
-            if (m_dir == 3){m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(0, 30));}
+            if (m_dir == 0){m_Goal = new Vector2(rnd.Next(Fixed.windowWidth, Fixed.windowWidth+30), rnd.Next(0, Fixed.windowHeight));}
+            if (m_dir == 1){m_Goal = new Vector2(rnd.Next(-30, 0), rnd.Next(0, Fixed.windowHeight));}
+            if (m_dir == 2){m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(Fixed.windowHeight, Fixed.windowHeight +30));}
+            if (m_dir == 3){m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(-30, 0));}
 
             m_Ellapsed = 0;
             m_Position = KeyMouseReader1.GetMousePosition();
