@@ -63,7 +63,7 @@ namespace JustForFun.Menu.StarFlight
             if (m_dir == 3){m_Goal = new Vector2(rnd.Next(0, Fixed.windowWidth), rnd.Next(-30, 0));}
 
             m_Ellapsed = 0;
-            m_Position = KeyMouseReader1.GetMousePosition();
+            m_Position = m_Startposition;//KeyMouseReader1.GetMousePosition();
             m_Scale = 0.01f;          
         }
 
