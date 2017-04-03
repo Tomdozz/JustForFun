@@ -69,7 +69,7 @@ namespace JustForFun.Menu.StarFlight
 
         public void Update(GameTime gameTime)
         {
-            m_Ellapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                m_Ellapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 Vector2 m_Desired = Vector2.Subtract(m_Goal, m_Position);
                 double d = Math.Sqrt((m_Desired.X * m_Desired.X) + (m_Desired.Y * m_Desired.Y));

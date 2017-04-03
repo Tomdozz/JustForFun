@@ -14,8 +14,11 @@ namespace JustForFun.Particles
         public Color m_Color;
 
         public Vector2 m_Position;
-        public Vector2 m_Scale = Vector2.One;
+        public Vector2 m_Goal;
+        public Vector2 m_Desired;
+        public Vector2 m_ScaleVector = Vector2.One;
 
+        public float m_Scale;
         public float m_Orientation;
         public float m_Duration;
         public float m_PercentLife = 1f;

@@ -42,7 +42,9 @@ namespace JustForFun.Particles
 
         private Particle[] m_ParticleList;
         private int m_Capacity;
+
         private int m_Count;
+        private int m_Start;
 
         public ParticleManager(int capacity)
         {
@@ -53,13 +55,13 @@ namespace JustForFun.Particles
             }
         }
 
-        public void CreateParticle(Texture2D texture, Color color, Vector2 pos, float scale,float orientation, float duartion)
+        public void CreateParticle(Texture2D texture, Color color, Vector2 pos, Vector2 goal, float scale, float orientation, float duartion)
         {
             Particle particle;
             if (m_ParticleList.Count() == m_Capacity)
             {
                 particle = m_ParticleList[0];
-
+                m_Start++;
             }
             else
             {
@@ -67,6 +69,21 @@ namespace JustForFun.Particles
                 m_Count++;
             }
             particle.m_Texture = texture;
+            particle.m_Position = pos;
+            particle.m_Color = color;
+            particle.m_Scale = scale;
+            particle.m_Orientation = orientation;
+            particle.m_Duration = duartion;
+            particle.m_Goal = goal;
+        }
+
+        public void UpdateParticle(Particle particle)
+        {
+            particle.m_Desired = Vector2.Subtract(particle.m_Goal, particle.m_Position);
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
 
         }
     }
