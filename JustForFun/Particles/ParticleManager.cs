@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,17 +41,32 @@ namespace JustForFun.Particles
         }
 
         private Particle[] m_ParticleList;
+        private int m_Capacity;
+        private int m_Count;
 
         public ParticleManager(int capacity)
         {
+            m_Capacity = capacity;
             for (int i = 0; i < capacity; i++)
             {
                 m_ParticleList[i] = new Particle();
             }
         }
 
-        public void CreateParticle()
+        public void CreateParticle(Texture2D texture, Color color, Vector2 pos, float scale,float orientation, float duartion)
         {
+            Particle particle;
+            if (m_ParticleList.Count() == m_Capacity)
+            {
+                particle = m_ParticleList[0];
+
+            }
+            else
+            {
+                particle = m_ParticleList[m_Count];
+                m_Count++;
+            }
+            particle.m_Texture = texture;
 
         }
     }
