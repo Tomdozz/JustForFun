@@ -80,6 +80,8 @@ namespace JustForFun.Particles
         public void UpdateParticle(Particle particle)
         {
             particle.m_Desired = Vector2.Subtract(particle.m_Goal, particle.m_Position);
+            double d = Math.Sqrt((particle.m_Desired.X * particle.m_Desired.X) + (particle.m_Desired.Y * particle.njm_Desired.Y));
+
         }
 
         public void Draw(SpriteBatch sb)
