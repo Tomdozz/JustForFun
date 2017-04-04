@@ -55,7 +55,7 @@ namespace JustForFun.Particles
             }
         }
 
-        public void CreateParticle(Texture2D texture, Color color, Vector2 pos, Vector2 goal, float scale, float orientation, float duartion)
+        public void CreateParticle(Texture2D texture, Color color, Vector2 pos, Vector2 goal, float scale, float orientation, float duartion, float speed)
         {
             Particle particle;
             if (m_ParticleList.Count() == m_Capacity)
@@ -75,13 +75,19 @@ namespace JustForFun.Particles
             particle.m_Orientation = orientation;
             particle.m_Duration = duartion;
             particle.m_Goal = goal;
+            particle.m_Speed = speed;
         }
 
         public void UpdateParticle(Particle particle)
         {
             particle.m_Desired = Vector2.Subtract(particle.m_Goal, particle.m_Position);
-            double d = Math.Sqrt((particle.m_Desired.X * particle.m_Desired.X) + (particle.m_Desired.Y * particle.njm_Desired.Y));
+            double d = Math.Sqrt((particle.m_Desired.X * particle.m_Desired.X) + (particle.m_Desired.Y * particle.m_Desired.Y));
 
+            particle.m_Velocity = Vector2.Multiply(particle.m_Desired, -particle.m_Speed);
+
+            particle.m_Steer = Vector2.Subtract(particle.m_Desired, particle.m_Velocity);
+
+            particle.m_Position += particle.m_Steer;
         }
 
         public void Draw(SpriteBatch sb)

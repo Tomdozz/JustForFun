@@ -16,9 +16,12 @@ namespace JustForFun.Particles
         public Vector2 m_Position;
         public Vector2 m_Goal;
         public Vector2 m_Desired;
+        public Vector2 m_Velocity;
+        public Vector2 m_Steer;
         public Vector2 m_ScaleVector = Vector2.One;
 
         public float m_Scale;
+        public float m_Speed;
         public float m_Orientation;
         public float m_Duration;
         public float m_PercentLife = 1f;

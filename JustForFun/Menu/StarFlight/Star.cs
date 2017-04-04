@@ -79,7 +79,7 @@ namespace JustForFun.Menu.StarFlight
                 //-((float)d/1000000000);
 
                 m_Desired.Normalize();
-                m_Desired = Vector2.Multiply(m_Desired, m_Speed);
+                //m_Desired = Vector2.Multiply(m_Desired, m_Speed);
                 m_Velocity = Vector2.Multiply(m_Desired, -m_Speed);
 
                 m_Steer = Vector2.Subtract(m_Desired, m_Velocity);
