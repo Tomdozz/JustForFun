@@ -49,12 +49,24 @@ namespace JustForFun.Particles
         public ParticleManager(int capacity)
         {
             m_Capacity = capacity;
+            m_ParticleList = new Particle[m_Capacity];
+
             for (int i = 0; i < capacity; i++)
             {
                 m_ParticleList[i] = new Particle();
             }
         }
-
+        /// <summary>
+        /// creates a new particlel
+        /// </summary>
+        /// <param name="texture"></param>
+        /// <param name="color"></param>
+        /// <param name="pos"></param>
+        /// <param name="goal"></param>
+        /// <param name="scale"></param>
+        /// <param name="orientation"></param>
+        /// <param name="duartion"></param>
+        /// <param name="speed"></param>
         public void CreateParticle(Texture2D texture, Color color, Vector2 pos, Vector2 goal, float scale, float orientation, float duartion, float speed)
         {
             Particle particle;
@@ -78,6 +90,11 @@ namespace JustForFun.Particles
             particle.m_Speed = speed;
         }
 
+        private void RotateArray(Particle particle)
+        {
+            particle = m_ParticleList[0];
+        }
+
         public void UpdateParticle(Particle particle)
         {
             particle.m_Desired = Vector2.Subtract(particle.m_Goal, particle.m_Position);
@@ -88,6 +105,11 @@ namespace JustForFun.Particles
             particle.m_Steer = Vector2.Subtract(particle.m_Desired, particle.m_Velocity);
 
             particle.m_Position += particle.m_Steer;
+
+            if (particle.m_Position == particle.m_Goal)
+            {
+                RotateArray(particle);
+            }
         }
 
         public void Draw(SpriteBatch sb)
