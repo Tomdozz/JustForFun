@@ -1,4 +1,5 @@
 ﻿using JustForFun.FlockingFolder.BoidsFlocking;
+using JustForFun.Menu;
 using JustForFun.Menu.StarFlight;
 using JustForFun.Steering;
 using JustForFun.TileFolder.MapFolder;
@@ -35,6 +36,7 @@ namespace JustForFun.Global
         Enemy enemy;
         Enemy leader;
         SteeringController sController;
+        Menu1 menu;
 
         StarController starcontroller;
 
@@ -50,6 +52,7 @@ namespace JustForFun.Global
             leader = new Enemy(600f, 500f);
             leader.m_MaxSpeed = 2;
             sController = new SteeringController();
+            menu = new Menu1();
         }
 
         /// <summary>
@@ -96,6 +99,7 @@ namespace JustForFun.Global
             {
                 case GameState.Menu:
                     starcontroller.Update(gameTime);
+                    menu.UpdateMenu(ref m_CurrentBehavior, gameTime);
                     break;
                 case GameState.Running:
                     break;
@@ -130,6 +134,7 @@ namespace JustForFun.Global
             {
                 case GameState.Menu:
                     starcontroller.Draw(sb);
+                    menu.Draw(sb);
                     break;
                 case GameState.Running:
                     break;

@@ -10,7 +10,7 @@ namespace JustForFun.Menu.StarFlight
 {
     class StarController
     {
-        Star[] stars = new Star[70000];
+        Star[] stars = new Star[1000];
 
         Random rnd;
         public StarController()
