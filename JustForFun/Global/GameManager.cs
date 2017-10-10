@@ -60,8 +60,8 @@ namespace JustForFun.Global
         /// </summary>
         public void Initi()
         {
-            //map.Initi();
-            //map.MakeMap();
+            map.Initi();
+            map.MakeMap();
         }
 
         /// <summary>
@@ -98,8 +98,9 @@ namespace JustForFun.Global
             switch (m_CurrentGameState)
             {
                 case GameState.Menu:
-                    starcontroller.Update(gameTime);
-                    menu.UpdateMenu(ref m_CurrentBehavior, gameTime);
+                    map.UpdateMap(gameTime);
+                    //starcontroller.Update(gameTime);
+                    //menu.UpdateMenu(ref m_CurrentBehavior, gameTime);
                     break;
                 case GameState.Running:
                     break;
@@ -133,8 +134,9 @@ namespace JustForFun.Global
             switch (m_CurrentGameState)
             {
                 case GameState.Menu:
-                    starcontroller.Draw(sb);
-                    menu.Draw(sb);
+                    //starcontroller.Draw(sb);
+                    map.Draw(sb);
+                    // menu.Draw(sb);
                     break;
                 case GameState.Running:
                     break;
@@ -147,9 +149,8 @@ namespace JustForFun.Global
                 default:
                     break;
             }
-         //   sb.Draw(TextureMananger.star, KeyMouseReader1.GetMousePosition(), null, Color.Red, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
+            //   sb.Draw(TextureMananger.star, KeyMouseReader1.GetMousePosition(), null, Color.Red, 0, new Vector2(0, 0), 1, SpriteEffects.None, 0);
             //enemy.Draw(sb);
-            //map.Draw(sb);
             //sController.Draw(sb);
             // boidController.Draw(sb);
             sb.End();

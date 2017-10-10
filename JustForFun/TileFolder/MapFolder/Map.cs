@@ -15,6 +15,7 @@ namespace JustForFun.TileFolder.MapFolder
     {
         RuleSet ruleSet;
         RuleSetMap mapRuleSet;
+        int stop;
 
         public List<Wall> walls = new List<Wall>();
 
@@ -24,7 +25,7 @@ namespace JustForFun.TileFolder.MapFolder
         Random rnd = new Random();
         Random rndX = new Random();
         Random rndY = new Random();
-
+        Random rndTime = new Random();
         //Ladda från fil?
         //public static int[,] mapLayout = new int[,]
         //{
@@ -73,44 +74,47 @@ namespace JustForFun.TileFolder.MapFolder
 
             mapLayout[10, 10] = 1;
             mapLayout[10, 11] = 1;
-           //mapLayout[17, 10] = 1;
-           //mapLayout[18, 10] = 1;
+            mapLayout[11, 10] = 1;
+
+            MakeEdges();
+
+            //stop on random time between 0 and five seconds(seed is creaded)
+            stop = rndTime.Next(3, 10);
         }
 
-        public void UpdateMap()
+        public void UpdateMap(GameTime gameTime)
         {
-            // for (int y = 0; y < Fixed.maxY; y++)
-            // {
-            //     for (int x = 0; x < Fixed.maxX; x++)
-            //     {
-            //         mapLayout[x, y] = rnd.Next(0, 1 + 1);
-            //     }
-            // }
-            // mapLayout[4, 4] = 1;
-            // mapLayout[4, 5] = 1;
-            // mapLayout[5, 4] = 1;
-            float mapLenght = Fixed.windowWidth * Fixed.windowWidth;
-            if (mapLayout.Length < mapLenght / 4)
+            //choose ruleset
+            if (gameTime.TotalGameTime.TotalSeconds < stop)
             {
-                int x, y;
-                x = rndX.Next(0, Fixed.windowWidth-1);
-                y = rndY.Next(0, Fixed.windowHeight-1);
+                ruleSet = new TomsGameOfLife(mapLayout, Fixed.maxX, Fixed.maxY);
 
-                mapLayout[x, y] = 1;
+                MakeMap();
+                ruleSet.Tick();
+
             }
-            ruleSet = new TomsGameOfLife(mapLayout, Fixed.maxX, Fixed.maxY);
+            if (gameTime.TotalGameTime.TotalSeconds>stop)
+            {
+                MakeMap();
+               // MakeEdges();
+                //MakeMap();
+            }
+           
 
+        }
 
-            //mapRuleSet = new MapGameOfLife(mapLayout, Fixed.maxX, Fixed.maxY);
-            //for (int i = 0; i < 5000; i++)
-            //{
-
-            MakeMap();
-            ruleSet.Tick();
-
-            //mapLayout = ruleSet.NewFeild();
-            //mapRuleSet.Tick();
-            //}
+        public void MakeEdges()
+        {
+            for (int i = 0; i < Fixed.maxX; i++)
+            {
+                mapLayout[i, 0] = 1;
+                mapLayout[i, 149] = 1;
+            }
+            for (int i = 0; i < Fixed.maxY; i++)
+            {
+                mapLayout[0, i] = 1;
+                mapLayout[149, i] = 1;
+            }
         }
 
         public void MakeMap()
@@ -126,14 +130,6 @@ namespace JustForFun.TileFolder.MapFolder
                     }
                 }
             }
-            //for (int i = 0; i < Fixed.windowWidth; i++)
-            //{
-            //    for (int j= 0; j < Fixed.windowHeight; j++)
-            //    {
-            //        tileGrid[i, j] = new Tile(new Vector2(i * 10, j * 10), TextureMananger.cell);
-            //    }
-            //
-            //}
         }
 
         public void Draw(SpriteBatch sb)
