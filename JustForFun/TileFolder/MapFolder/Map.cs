@@ -14,10 +14,9 @@ namespace JustForFun.TileFolder.MapFolder
     public class Map
     {
         RuleSet ruleSet;
+        RuleSet ruleSet2;
         RuleSetMap mapRuleSet;
         int stop;
-        //only used to make sure that edges and map are only created once after det initial "map" si created
-        int countEdge = 1;
 
         public List<Wall> walls = new List<Wall>();
 
@@ -27,7 +26,7 @@ namespace JustForFun.TileFolder.MapFolder
         Random rnd = new Random();
         Random rndX = new Random();
         Random rndY = new Random();
-        Random rndTime = new Random();
+        Random rndTimes = new Random();
         //Ladda från fil?
         //public static int[,] mapLayout = new int[,]
         //{
@@ -68,6 +67,9 @@ namespace JustForFun.TileFolder.MapFolder
             get { return mapLayout.GetLength(0); }
         }
 
+        /// <summary>
+        /// Initilize map with some seeds and a random number of itterations of (Toms way of life)
+        /// </summary>
         public void Initi()
         {
             mapLayout[1, 2] = 1;
@@ -79,33 +81,44 @@ namespace JustForFun.TileFolder.MapFolder
             mapLayout[11, 10] = 1;
 
             MakeEdges();
-
-            //stop on random time between 0 and five seconds(seed is creaded)
-            stop = rndTime.Next(3, 10);
-        }
-
-        public void UpdateMap(GameTime gameTime)
-        {
-            //choose ruleset
-            if (gameTime.TotalGameTime.TotalSeconds < stop)
+            stop = rndTimes.Next(200, 500);
+            for (int i = 0; i < stop; i++)
             {
                 ruleSet = new TomsGameOfLife(mapLayout, Fixed.maxX, Fixed.maxY);
 
                 MakeMap();
                 ruleSet.Tick();
-
             }
-            if (gameTime.TotalGameTime.TotalSeconds > stop && countEdge != 0)
-            {
-                MakeEdges();
-                countEdge = 0;
+            MakeEdges();
+
+            //for (int i = 0; i < 300; i++)
+            //{
+                //ruleSet2 = new CaveGeneration(mapLayout, Fixed.maxX, Fixed.maxY);
+
+                //ruleSet.Tick();
                 //MakeMap();
-            }
-            MakeMap();
-
-
+            //}
         }
 
+        /// <summary>
+        /// All Parts of the map that has to be updated
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public void UpdateMap(GameTime gameTime)
+        {
+          //  for (int i = 0; i < 300; i++)
+            //{
+                ruleSet2 = new CaveGeneration(mapLayout, Fixed.maxX, Fixed.maxY);
+
+                ruleSet.Tick();
+               // MakeMap();
+            
+            MakeMap();
+        }
+
+        /// <summary>
+        /// Method to fill the map with edges
+        /// </summary>
         public void MakeEdges()
         {
             for (int i = 0; i < Fixed.maxX; i++)
@@ -120,6 +133,9 @@ namespace JustForFun.TileFolder.MapFolder
             }
         }
 
+        /// <summary>
+        /// Based on int 2d array "map" is made by adding walls on the "ones"
+        /// </summary>
         public void MakeMap()
         {
             for (int y = 0; y < Fixed.maxY; y++)
@@ -135,15 +151,12 @@ namespace JustForFun.TileFolder.MapFolder
             }
         }
 
+        /// <summary>
+        /// Draw walls
+        /// </summary>
+        /// <param name="sb"></param>
         public void Draw(SpriteBatch sb)
         {
-            // for (int x = 0; x < Fixed.windowWidth; x++)
-            // {
-            //     for (int y = 0; y < Fixed.windowHeight; y++)
-            //     {
-            //         tileGrid[x, y].Draw(sb);
-            //     }
-            // }
 
             foreach (Wall w in walls)
             {

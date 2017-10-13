@@ -61,7 +61,7 @@ namespace JustForFun.Global
         public void Initi()
         {
             map.Initi();
-            map.MakeMap();
+           // map.MakeMap();
         }
 
         /// <summary>

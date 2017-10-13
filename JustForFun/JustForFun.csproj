@@ -66,6 +66,7 @@
     <Compile Include="Steering\LeaderEnemy.cs" />
     <Compile Include="Steering\SteeringController.cs" />
     <Compile Include="TileFolder\MapFolder\Map.cs" />
+    <Compile Include="TileFolder\MapFolder\MapAI\CaveGeneration.cs" />
     <Compile Include="TileFolder\MapFolder\MapAI\ConwaysGameOfLife.cs" />
     <Compile Include="TileFolder\MapFolder\MapAI\MapRules\MapGameOfLife.cs" />
     <Compile Include="TileFolder\MapFolder\MapAI\MapRules\RuleSetMap.cs" />

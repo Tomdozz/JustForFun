@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace JustForFun.TileFolder.MapFolder.MapAI
 {
-    class TomsGameOfLife : RuleSet
+    class CaveGeneration : RuleSet
     {
-        public TomsGameOfLife(int[,] mapLayout, int maxX, int maxY)
+        public CaveGeneration(int[,] mapLayout, int maxX, int maxY)
             : base(mapLayout, maxX, maxY)
         {
-        }
 
+        }
         protected override int[,] TickAlgorithm()
         {
             int[,] mapLayout2 = new int[maxX, maxY];
@@ -24,26 +24,27 @@ namespace JustForFun.TileFolder.MapFolder.MapAI
                     if (mapLayout[x, y] != 1)
                     {
                         int neighbors = GetNeighbors(x, y);
-                        //what is requierd to give birh
-                        if (neighbors == 2)
+
+                        //Birth
+                        if (neighbors == 6 || neighbors == 7 || neighbors == 8)
                         {
                             mapLayout2[x, y] = 1;
                             continue;
                         }
 
-                        //what is  rewuierd to survive
-                        if (neighbors == 3 || neighbors == 1)
+                        //survive
+                        if (neighbors >= 3 && neighbors <= 8)
                         {
                             mapLayout2[x, y] = mapLayout[x, y];
                             continue;
                         }
 
-                        mapLayout2[x, y] = 0;
+
+
                     }
                 }
             }
             return mapLayout2;
-            //throw new NotImplementedException();
         }
     }
 }
