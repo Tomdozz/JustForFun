@@ -16,6 +16,8 @@ namespace JustForFun.TileFolder.MapFolder
         RuleSet ruleSet;
         RuleSetMap mapRuleSet;
         int stop;
+        //only used to make sure that edges and map are only created once after det initial "map" si created
+        int countEdge = 1;
 
         public List<Wall> walls = new List<Wall>();
 
@@ -93,13 +95,14 @@ namespace JustForFun.TileFolder.MapFolder
                 ruleSet.Tick();
 
             }
-            if (gameTime.TotalGameTime.TotalSeconds>stop)
+            if (gameTime.TotalGameTime.TotalSeconds > stop && countEdge != 0)
             {
-                MakeMap();
-               // MakeEdges();
+                MakeEdges();
+                countEdge = 0;
                 //MakeMap();
             }
-           
+            MakeMap();
+
 
         }
 
