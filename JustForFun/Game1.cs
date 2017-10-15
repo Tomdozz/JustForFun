@@ -65,9 +65,9 @@ namespace JustForFun
      
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            spriteBatch.End();
+           GraphicsDevice.Clear(Color.CornflowerBlue);
+           //spriteBatch.Begin();
+           //spriteBatch.End();
             gameManager.Draw(spriteBatch);
             // TODO: Add your drawing code here
 

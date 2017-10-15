@@ -26,21 +26,18 @@ namespace JustForFun.TileFolder.MapFolder.MapAI
                         int neighbors = GetNeighbors(x, y);
 
                         //Birth
-                        if (neighbors == 6 || neighbors == 7 || neighbors == 8)
+                        if ( neighbors == 6 || neighbors == 7 || neighbors == 8)
                         {
                             mapLayout2[x, y] = 1;
                             continue;
                         }
 
                         //survive
-                        if (neighbors >= 3 && neighbors <= 8)
+                        if (neighbors == 3 || neighbors == 4 || neighbors == 5 || neighbors == 6 || neighbors == 7 || neighbors == 8)//(neighbors >= 3 && neighbors <= 8)
                         {
                             mapLayout2[x, y] = mapLayout[x, y];
                             continue;
                         }
-
-
-
                     }
                 }
             }

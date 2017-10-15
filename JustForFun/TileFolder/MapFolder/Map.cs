@@ -16,6 +16,8 @@ namespace JustForFun.TileFolder.MapFolder
         RuleSet ruleSet;
         RuleSet ruleSet2;
         RuleSetMap mapRuleSet;
+
+        CaMakeMap caMakeMap;
         int stop;
 
         public List<Wall> walls = new List<Wall>();
@@ -75,6 +77,11 @@ namespace JustForFun.TileFolder.MapFolder
             mapLayout[1, 2] = 1;
             mapLayout[2, 1] = 1;
             mapLayout[1, 1] = 1;
+            mapLayout[0, 0] = 1;
+            mapLayout[0, 1] = 1;
+            mapLayout[0, 2] = 1;
+            mapLayout[1, 0] = 1;
+            mapLayout[0, 2] = 1;
 
             mapLayout[10, 10] = 1;
             mapLayout[10, 11] = 1;
@@ -90,13 +97,29 @@ namespace JustForFun.TileFolder.MapFolder
                 ruleSet.Tick();
             }
             MakeEdges();
+            MakeMap();
+
+          // caMakeMap = new CaMakeMap(4, mapLayout, Fixed.maxX, Fixed.maxY);
+          // int[,] newMap = caMakeMap.Run();
+          //
+          // for (int y = 0; y < Fixed.maxY; y++)
+          // {
+          //     for (int x = 0; x < Fixed.maxX; x++)
+          //     {
+          //         if (newMap[x, y] == 1)
+          //         {
+          //             Wall wall = new Wall(new Vector2(x * 10, y * 10), TextureMananger.cell);
+          //             walls.Add(wall);
+          //         }
+          //     }
+          // }
 
             //for (int i = 0; i < 300; i++)
             //{
-                //ruleSet2 = new CaveGeneration(mapLayout, Fixed.maxX, Fixed.maxY);
+            //ruleSet2 = new CaveGeneration(mapLayout, Fixed.maxX, Fixed.maxY);
 
-                //ruleSet.Tick();
-                //MakeMap();
+            //ruleSet.Tick();
+            //MakeMap();
             //}
         }
 
@@ -106,14 +129,17 @@ namespace JustForFun.TileFolder.MapFolder
         /// <param name="gameTime"></param>
         public void UpdateMap(GameTime gameTime)
         {
-          //  for (int i = 0; i < 300; i++)
-            //{
-                ruleSet2 = new CaveGeneration(mapLayout, Fixed.maxX, Fixed.maxY);
+            //ruleSet2 = new CaveGeneration(mapLayout, Fixed.maxX, Fixed.maxY);
+            //////  for (int i = 0; i < 300; i++)
+            //////{
+            //////for (int i = 0; i < 4; i++)
+            //////{
+            //MakeMap();
+            //ruleSet2.Tick();
+            //mapLayout = ruleSet2.NewFeild();
+            //MakeMap();
+            //}
 
-                ruleSet.Tick();
-               // MakeMap();
-            
-            MakeMap();
         }
 
         /// <summary>
